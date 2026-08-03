@@ -161,7 +161,6 @@ INSTANCE_SENSORS: tuple[QBittorrentPlusSensorDescription, ...] = (
         translation_key="global_ratio",
         state_class=SensorStateClass.MEASUREMENT,
         suggested_display_precision=2,
-        entity_registry_enabled_default=False,
         value_fn=lambda c: float(_server(c).get("global_ratio") or 0),
     ),
     QBittorrentPlusSensorDescription(

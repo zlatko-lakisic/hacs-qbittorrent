@@ -1,5 +1,5 @@
 ---
-version: "1.0.0"
+version: "1.0.1"
 ---
 <p align="center">
   <img src="https://raw.githubusercontent.com/zlatko-lakisic/hacs-qbittorrent/main/images/readme-hero.png" alt="qBittorrent Plus" width="256">
