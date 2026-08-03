@@ -1,0 +1,98 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "qBittorrent Plus",
+        "description": "Connect to a qBittorrent WebUI. Username/password can be left empty if authentication is disabled.",
+        "data": {
+          "url": "WebUI URL",
+          "username": "Username",
+          "password": "Password",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "Example: http://172.16.55.2:8082"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to qBittorrent",
+      "invalid_auth": "Invalid username or password",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This qBittorrent instance is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "qBittorrent Plus options",
+        "description": "Hybrid mode creates entities only for active torrents, up to the configured cap.",
+        "data": {
+          "expose_active_torrents": "Expose active torrents as entities",
+          "max_torrent_entities": "Maximum active torrent entities",
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": { "name": "Status" },
+      "connection_status": { "name": "Connection status" },
+      "download_speed": { "name": "Download speed" },
+      "upload_speed": { "name": "Upload speed" },
+      "download_speed_limit": { "name": "Download speed limit" },
+      "upload_speed_limit": { "name": "Upload speed limit" },
+      "session_download": { "name": "Session download" },
+      "session_upload": { "name": "Session upload" },
+      "alltime_download": { "name": "All-time download" },
+      "alltime_upload": { "name": "All-time upload" },
+      "global_ratio": { "name": "Global ratio" },
+      "free_space": { "name": "Free space on disk" },
+      "all_torrents": { "name": "All torrents" },
+      "active_torrents": { "name": "Active torrents" },
+      "inactive_torrents": { "name": "Inactive torrents" },
+      "paused_torrents": { "name": "Paused torrents" },
+      "errored_torrents": { "name": "Errored torrents" },
+      "downloading_torrents": { "name": "Downloading torrents" },
+      "seeding_torrents": { "name": "Seeding torrents" },
+      "stalled_torrents": { "name": "Stalled torrents" },
+      "queued_torrents": { "name": "Queued torrents" },
+      "longest_eta": { "name": "Longest ETA" },
+      "listen_port": { "name": "Listen port" },
+      "client_version": { "name": "Client version" },
+      "api_version": { "name": "API version" },
+      "torrent_state": { "name": "State" },
+      "torrent_progress": { "name": "Progress" },
+      "torrent_download_speed": { "name": "Download speed" },
+      "torrent_upload_speed": { "name": "Upload speed" },
+      "torrent_ratio": { "name": "Ratio" },
+      "torrent_eta": { "name": "ETA" },
+      "torrent_size": { "name": "Size" },
+      "torrent_seeds": { "name": "Seeds" },
+      "torrent_peers": { "name": "Peers" }
+    },
+    "switch": {
+      "alternative_speed": { "name": "Alternative speed" },
+      "torrent_running": { "name": "Running" }
+    },
+    "number": {
+      "current_download_limit": { "name": "Current download limit" },
+      "current_upload_limit": { "name": "Current upload limit" },
+      "normal_download_limit": { "name": "Normal download limit" },
+      "normal_upload_limit": { "name": "Normal upload limit" },
+      "alt_download_limit": { "name": "Alternative download limit" },
+      "alt_upload_limit": { "name": "Alternative upload limit" },
+      "listen_port_number": { "name": "Listen port" }
+    },
+    "button": {
+      "pause_all": { "name": "Pause all" },
+      "resume_all": { "name": "Resume all" },
+      "torrent_recheck": { "name": "Recheck" },
+      "torrent_reannounce": { "name": "Reannounce" },
+      "torrent_delete": { "name": "Delete" }
+    }
+  }
+}

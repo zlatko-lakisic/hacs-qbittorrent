@@ -1,0 +1,13 @@
+{
+  "domain": "qbittorrent_plus",
+  "name": "qBittorrent Plus",
+  "codeowners": ["@zlatko-lakisic"],
+  "config_flow": true,
+  "documentation": "https://github.com/zlatko-lakisic/hacs-qbittorrent",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/zlatko-lakisic/hacs-qbittorrent/issues",
+  "loggers": ["qbittorrentapi"],
+  "requirements": ["qbittorrent-api==2026.5.1"],
+  "version": "1.0.0"
+}

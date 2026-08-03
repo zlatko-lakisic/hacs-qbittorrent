@@ -1,0 +1,428 @@
+get_torrents:
+  name: Get torrents
+  description: Return formatted torrent info for a status filter.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      description: Target qBittorrent Plus config entry.
+      required: false
+      selector:
+        text:
+    filter:
+      name: Filter
+      description: qBittorrent status filter.
+      required: false
+      default: all
+      selector:
+        select:
+          options:
+            - all
+            - downloading
+            - seeding
+            - completed
+            - paused
+            - active
+            - inactive
+            - resumed
+            - stalled
+            - stalled_uploading
+            - stalled_downloading
+            - errored
+
+get_torrent:
+  name: Get torrent
+  description: Return details for a single torrent hash.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hash:
+      name: Torrent hash
+      required: true
+      selector:
+        text:
+
+pause_torrents:
+  name: Pause torrents
+  description: Pause one or more torrents (or all).
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      description: Pipe-separated hashes, a list, or omit for all.
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+
+resume_torrents:
+  name: Resume torrents
+  description: Resume one or more torrents (or all).
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+
+delete_torrents:
+  name: Delete torrents
+  description: Delete torrents. Explicit hashes are required.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    delete_files:
+      name: Delete files
+      required: false
+      default: false
+      selector:
+        boolean:
+
+recheck_torrents:
+  name: Recheck torrents
+  description: Force recheck of torrents.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+
+reannounce_torrents:
+  name: Reannounce torrents
+  description: Force reannounce to trackers.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+
+add_torrent:
+  name: Add torrent
+  description: Add torrents via magnet/URL or base64-encoded .torrent contents.
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    urls:
+      name: URLs / magnets
+      required: false
+      selector:
+        text:
+    torrent_file:
+      name: Torrent file (base64)
+      required: false
+      selector:
+        text:
+    category:
+      name: Category
+      required: false
+      selector:
+        text:
+    save_path:
+      name: Save path
+      required: false
+      selector:
+        text:
+    tags:
+      name: Tags
+      required: false
+      selector:
+        text:
+    paused:
+      name: Add paused
+      required: false
+      selector:
+        boolean:
+
+set_torrent_category:
+  name: Set torrent category
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    category:
+      name: Category
+      required: true
+      selector:
+        text:
+
+add_torrent_tags:
+  name: Add torrent tags
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    tags:
+      name: Tags
+      required: true
+      selector:
+        text:
+
+remove_torrent_tags:
+  name: Remove torrent tags
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    tags:
+      name: Tags
+      required: true
+      selector:
+        text:
+
+set_torrent_share_limits:
+  name: Set torrent share limits
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    ratio_limit:
+      name: Ratio limit
+      required: false
+      default: -1
+      selector:
+        number:
+          min: -1
+          max: 100
+          step: 0.1
+    seeding_time_limit:
+      name: Seeding time limit (minutes)
+      required: false
+      default: -1
+      selector:
+        number:
+          min: -1
+          max: 100000
+          step: 1
+
+set_speed_limits:
+  name: Set speed limits
+  description: Set global or per-torrent download/upload limits in bytes/s (0 = unlimited).
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    hashes:
+      name: Hashes
+      required: false
+      selector:
+        text:
+    hash:
+      name: Hash
+      required: false
+      selector:
+        text:
+    download_limit:
+      name: Download limit
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 104857600
+          step: 1024
+          unit_of_measurement: B/s
+    upload_limit:
+      name: Upload limit
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 104857600
+          step: 1024
+          unit_of_measurement: B/s
+
+toggle_alternative_speed:
+  name: Toggle alternative speed
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+
+create_category:
+  name: Create category
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    name:
+      name: Name
+      required: true
+      selector:
+        text:
+    save_path:
+      name: Save path
+      required: false
+      selector:
+        text:
+
+edit_category:
+  name: Edit category
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    name:
+      name: Name
+      required: true
+      selector:
+        text:
+    save_path:
+      name: Save path
+      required: false
+      selector:
+        text:
+
+remove_categories:
+  name: Remove categories
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    name:
+      name: Category name(s)
+      required: true
+      selector:
+        text:
+
+create_tags:
+  name: Create tags
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    tags:
+      name: Tags
+      required: true
+      selector:
+        text:
+
+delete_tags:
+  name: Delete tags
+  fields:
+    config_entry_id:
+      name: Config entry ID
+      required: false
+      selector:
+        text:
+    tags:
+      name: Tags
+      required: true
+      selector:
+        text:

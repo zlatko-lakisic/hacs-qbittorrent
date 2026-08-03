@@ -1,0 +1,60 @@
+{
+  "entity": {
+    "sensor": {
+      "status": { "default": "mdi:information" },
+      "connection_status": { "default": "mdi:lan-connect" },
+      "download_speed": { "default": "mdi:download" },
+      "upload_speed": { "default": "mdi:upload" },
+      "download_speed_limit": { "default": "mdi:download-lock" },
+      "upload_speed_limit": { "default": "mdi:upload-lock" },
+      "session_download": { "default": "mdi:download-box" },
+      "session_upload": { "default": "mdi:upload-box" },
+      "alltime_download": { "default": "mdi:download-circle" },
+      "alltime_upload": { "default": "mdi:upload-circle" },
+      "global_ratio": { "default": "mdi:dividers" },
+      "free_space": { "default": "mdi:harddisk" },
+      "all_torrents": { "default": "mdi:file-multiple" },
+      "active_torrents": { "default": "mdi:play-circle" },
+      "inactive_torrents": { "default": "mdi:pause-circle" },
+      "paused_torrents": { "default": "mdi:pause" },
+      "errored_torrents": { "default": "mdi:alert-circle" },
+      "downloading_torrents": { "default": "mdi:download-network" },
+      "seeding_torrents": { "default": "mdi:upload-network" },
+      "stalled_torrents": { "default": "mdi:timer-sand" },
+      "queued_torrents": { "default": "mdi:playlist-play" },
+      "longest_eta": { "default": "mdi:clock-outline" },
+      "listen_port": { "default": "mdi:ethernet" },
+      "client_version": { "default": "mdi:package-variant" },
+      "api_version": { "default": "mdi:api" },
+      "torrent_state": { "default": "mdi:information-outline" },
+      "torrent_progress": { "default": "mdi:progress-download" },
+      "torrent_download_speed": { "default": "mdi:download" },
+      "torrent_upload_speed": { "default": "mdi:upload" },
+      "torrent_ratio": { "default": "mdi:dividers" },
+      "torrent_eta": { "default": "mdi:clock-outline" },
+      "torrent_size": { "default": "mdi:database" },
+      "torrent_seeds": { "default": "mdi:sprout" },
+      "torrent_peers": { "default": "mdi:account-group" }
+    },
+    "switch": {
+      "alternative_speed": { "default": "mdi:speedometer-slow" },
+      "torrent_running": { "default": "mdi:play-pause" }
+    },
+    "number": {
+      "current_download_limit": { "default": "mdi:download-lock" },
+      "current_upload_limit": { "default": "mdi:upload-lock" },
+      "normal_download_limit": { "default": "mdi:download-lock" },
+      "normal_upload_limit": { "default": "mdi:upload-lock" },
+      "alt_download_limit": { "default": "mdi:download-lock" },
+      "alt_upload_limit": { "default": "mdi:upload-lock" },
+      "listen_port_number": { "default": "mdi:ethernet" }
+    },
+    "button": {
+      "pause_all": { "default": "mdi:pause" },
+      "resume_all": { "default": "mdi:play" },
+      "torrent_recheck": { "default": "mdi:file-search" },
+      "torrent_reannounce": { "default": "mdi:bullhorn" },
+      "torrent_delete": { "default": "mdi:delete" }
+    }
+  }
+}
