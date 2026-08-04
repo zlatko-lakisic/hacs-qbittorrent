@@ -218,3 +218,22 @@ def merge_sync_maindata(
         torrents.pop(str(hash_), None)
 
     return torrents
+
+
+def merge_server_state(
+    previous: dict[str, Any],
+    sync_data: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Merge incremental sync/maindata server_state into a full map.
+
+    Partial updates only include changed keys. Replacing the whole dict drops
+    fields like dl_info_speed/up_info_speed when they are unchanged.
+    """
+    incoming = sync_data.get("server_state")
+    if sync_data.get("full_update") or not previous:
+        return dict(incoming) if incoming else dict(previous)
+    if not incoming:
+        return dict(previous)
+    merged = dict(previous)
+    merged.update(dict(cast(Mapping[str, Any], incoming)))
+    return merged

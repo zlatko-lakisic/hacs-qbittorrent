@@ -32,6 +32,7 @@ is_active_torrent = helpers.is_active_torrent
 select_active_torrents = helpers.select_active_torrents
 derive_counts = helpers.derive_counts
 merge_sync_maindata = helpers.merge_sync_maindata
+merge_server_state = helpers.merge_server_state
 format_torrent = helpers.format_torrent
 
 
@@ -109,6 +110,39 @@ def test_merge_sync_maindata_full_and_delta() -> None:
     assert merged["h1"]["dlspeed"] == 50
 
 
+def test_merge_server_state_keeps_speeds_across_partial() -> None:
+    full = {
+        "full_update": True,
+        "server_state": {
+            "dl_info_speed": 5_000_000,
+            "up_info_speed": 1000,
+            "connection_status": "connected",
+        },
+    }
+    merged = merge_server_state({}, full)
+    assert merged["dl_info_speed"] == 5_000_000
+
+    delta = {
+        "full_update": False,
+        "server_state": {
+            "alltime_dl": 123,
+            "connection_status": "connected",
+        },
+    }
+    merged = merge_server_state(merged, delta)
+    assert merged["dl_info_speed"] == 5_000_000
+    assert merged["up_info_speed"] == 1000
+    assert merged["alltime_dl"] == 123
+
+    slowed = {
+        "full_update": False,
+        "server_state": {"dl_info_speed": 0},
+    }
+    merged = merge_server_state(merged, slowed)
+    assert merged["dl_info_speed"] == 0
+    assert merged["up_info_speed"] == 1000
+
+
 def test_format_torrent() -> None:
     formatted = format_torrent(
         {
@@ -144,5 +178,6 @@ if __name__ == "__main__":
     test_select_active_torrents_disabled_cap()
     test_derive_counts()
     test_merge_sync_maindata_full_and_delta()
+    test_merge_server_state_keeps_speeds_across_partial()
     test_format_torrent()
     print("all tests passed")

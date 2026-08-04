@@ -24,7 +24,13 @@ from .const import (
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
 )
-from .helpers import derive_counts, longest_eta_seconds, merge_sync_maindata, select_active_torrents
+from .helpers import (
+    derive_counts,
+    longest_eta_seconds,
+    merge_server_state,
+    merge_sync_maindata,
+    select_active_torrents,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -44,6 +50,7 @@ class QBittorrentPlusCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self.config_entry = config_entry
         self._rid = 0
         self._torrents: dict[str, dict[str, Any]] = {}
+        self._server_state: dict[str, Any] = {}
         self._categories: dict[str, Any] = {}
         self._tags: list[str] = []
         self._known_active_hashes: set[str] = set()
@@ -122,7 +129,11 @@ class QBittorrentPlusCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 if tag in self._tags:
                     self._tags.remove(tag)
 
-        server_state = dict(sync_data.get("server_state") or {})
+        # Partial sync/maindata only includes changed server_state keys. Replace-on-
+        # write wipes speeds (dl_info_speed/up_info_speed) when those keys are absent.
+        self._server_state = merge_server_state(self._server_state, sync_data)
+        server_state = dict(self._server_state)
+
         # Prefer server_state flag when present.
         if "use_alt_speed_limits" in server_state:
             alt_enabled = bool(server_state.get("use_alt_speed_limits"))
